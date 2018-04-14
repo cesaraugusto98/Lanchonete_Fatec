@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lanchonete_FATEC</title>
+
+
+	<script src="js/jquery.js"></script>
+
+
+	<link href="css/bootstrap.min.css" rel=stylesheet>
+	<style>
+	#login {
+	  position: relative;
+	  float: right;
+	}
+	</style>
+ 
+ </head>
+
+  <body>
+  	<div class="col-sm-12">
+		<h1 class="h3 mb-3 font-weight-normal">Cadastro de novos lanches <button id="login" class="btn btn-danger col-offset-0">Logout</button></h1>
+  	 <div id="painelCadastro">
+        <div class="form-group col-md-3">
+          <input type="String" id="categoria" class="form-control" placeholder="Insira a categoria" required="" autofocus="">
+        </div>
+
+        <div class="form-group col-md-3">
+          <input type="String" id="nome" class="form-control" placeholder="Insira o nome" required="" autofocus="">
+        </div>
+
+        <div class="form-group col-md-3">
+          <input type="String" id="preco" class="form-control" placeholder="Insira o preco" required="" autofocus="">
+        </div>
+        
+        <div class="form-group col-md-3">
+          <input type="String" id="temperatura" class="form-control" placeholder="Insira a temperatura" required="" autofocus="">
+        </div>
+        
+        <div class="form-group col-md-3">
+          <input type="String" id="qtd" class="form-control" placeholder="Insira a quantidade" required="" autofocus="">
+        </div>
+	</div>
+
+		<button id="cadastro" class="btn btn-primary col-offset-0">Cadastrar</button>
+		
+
+		<table class="table table-bordered"> 
+			<caption>Bebidas</caption>
+				<thead>
+					<tr>
+						<th>Categoria</th> 
+						<th>Nome</th>
+						<th>Preco</th> 
+						<th>Temperatura</th> 
+						<th>Quantidade</th>
+					</tr> 
+				</thead> 
+				
+				<tbody id="dadosBebida"> 
+					
+				</tbody> 
+		</table>
+		
+		<button id="buscarLanche" class="btn btn-primary col-offset-0">Buscar Lanche</button>
+		<button id="buscarBebida" class="btn btn-primary col-offset-0">Buscar Bebida</button>
+		<button id="addLanche" class="btn btn-primary col-offset-0">Adicionar Lanche</button>
+		<button id="addFuncionario" class="btn btn-primary col-offset-0">Adicionar Funcionario</button>
+		
+	</div>
+	<script>
+		$(document).ready(function(){
+
+			$("#buscarBebida").click(function(){	
+				window.location = "/buscarBebida.html";
+			});
+			
+			$("#buscarLanche").click(function(){
+				window.location = "/buscarLanche.html";
+			});
+			
+			$("#buscarLanche").click(function(){
+				window.location = "/buscarLanche.html";
+			});
+			
+			$("#addFuncionario").click(function(){
+				window.location = "/AdicionarFuncionario.html";
+			});
+			
+			$("#login").click(function(){
+				window.location = "/Login.html";
+			});
+			
+			
+			$("#cadastro").click(function() {
+				
+				var categoria = $("#categoria").val();
+				var nome = $("#nome").val();        		
+        		var preco = $("#preco").val();
+        		var temperatura = $("#sabor").val();
+				var qtd = $("#qtd").val();
+				
+				$("#dadosLanche").empty();
+
+				var url = "/addBebida/"+categoria+"/"+nome+"/"+preco+"/"+temperatura+"/"+qtd+"";
+
+				$.getJSON(url, function(data) {
+
+						var itens = [];
+
+						$.each(data, function(i){
+							itens.push("<tr><td>"+ this.categoria +"</td><td>"+ this.nome +"</td><td>"+ this.preco + "</td><td>"+ this.temperatura + "</td><td>"+ this.qtd +"</td></tr>");						
+						});
+
+						$("#dadosBebida").append(itens);
+
+				});
+
+			});
+
+		});
+
+	</script>
+	
+  </body>
+
+</html>
