@@ -42,6 +42,7 @@ public class MainServer {
 		controller.buscarBebida();
 		controller.adicionarBebida();
 		controller.verificarLogin();
+		controller.adicionarFuncionario();
 				
     }
     

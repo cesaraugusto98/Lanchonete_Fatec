@@ -49,14 +49,14 @@ public class Model {
 	
 	public void addFuncionario(Funcionario func) {
 		funcionarios.add(func);
-	}//Cesar Augusto
+	}//Julio Cesar
 	
 	public List<Funcionario> getFuncionariosTratados(){
 		for(Funcionario func:funcionarios) {
 			func.setDtNascimento(LocalDate.parse(String.valueOf(func.getDtNascimento()).replace('/', '-')));
 		}
 		return funcionarios;
-	}
+	}//Julio Cesar
 	
 	/*public List<Funcionario> getFuncionarios(){
 		return funcionarios;

@@ -12,6 +12,7 @@ package hello;
 import static spark.Spark.get;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -63,9 +64,20 @@ public class Controller {
 		});
 	}//Cesar Augusto
 	
+	public LocalDate ConvertLocalDate(String dt) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        	
+		LocalDate date = LocalDate.parse(dt, formatter);
+
+		return date;
+	}
+
+	
 	public void adicionarFuncionario() {
+		
 		get("/addFuncionario/:nome/:cpf/:login/:senha/:dtNascimento/:salario",  (req, res) -> {
-			model.addFuncionario(new Funcionario(req.params(":nome"),req.params(":cpf"),req.params(":login"),req.params(":senha"), LocalDate.parse(req.params("dtNascimento").replace("-", "/")),Double.parseDouble(req.params(":salario"))));
+			model.addFuncionario(new Funcionario(req.params(":nome"),req.params(":cpf"),req.params(":login"),req.params(":senha"), ConvertLocalDate(req.params(":dtNascimento")),Double.parseDouble(req.params(":salario"))));
 			
 			return new Gson().toJson(model.getFuncionariosTratados());
 		});
