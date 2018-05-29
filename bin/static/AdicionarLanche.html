@@ -64,6 +64,12 @@
 	<script>
 		$(document).ready(function(){
 			
+			var login = sessionStorage.getItem("login");
+			
+			if(login == null) {
+				$(location).attr("href", "Login.html");
+			}
+			
 			$("#buscarBebida").click(function(){	
 				window.location = "/buscarBebida.html";
 			});

@@ -71,6 +71,12 @@
 	</div>
 	<script>
 		$(document).ready(function(){
+			
+			var login = sessionStorage.getItem("login");
+			
+			if(login == null) {
+				$(location).attr("href", "Login.html");
+			}
 
 			$("#buscarBebida").click(function(){	
 				window.location = "/buscarBebida.html";
@@ -91,21 +97,46 @@
 			$("#login").click(function(){
 				window.location = "/Login.html";
 			});
-			
-			
+			/*
+			$(document).ready(function(){
+				$("#busca").click(function() {
+					var login = $("#txtLogin").val().trim();
+					var senha = $("#txtSenha").val().trim();	
+					
+					var url = "/loginAdm/" + login + "/" + senha;
+				
+					$.post("loginAdm/funcionario", JSON.stringify({'login': login, 'senha': senha}), function(data){
+						if(data) {
+							sessionStorage.setItem("login", data.login);
+							window.location = "/buscarLanche.html";
+						} else {
+							$('#erro').attr('class', 'text-danger');
+						}
+					}, 'json');				
+				});
+			});
+			*/
 			$("#cadastro").click(function() {
 				
-				var categoria = $("#categoria").val();
-				var nome = $("#nome").val();        		
-        		var preco = $("#preco").val();
-        		var temperatura = $("#sabor").val();
-				var qtd = $("#qtd").val();
+				var categoria = $("#categoria").val().trim();
+				var nome = $("#nome").val().trim();        		
+        		var preco = $("#preco").val().trim();
+        		var temperatura = $("#sabor").val().trim();
+				var qtd = $("#qtd").val().trim();
 				
 				$("#dadosLanche").empty();
 
 				var url = "/addBebida/"+categoria+"/"+nome+"/"+preco+"/"+temperatura+"/"+qtd+"";
-
-				$.getJSON(url, function(data) {
+				$.post("/addBebida/bebida", JSON.stringify(}'categoria':categoria, 'nome': nome, 'preco': preco, 'temperatura':temperatura, 'qtd': qtd}), function(data){
+					var itens = [];
+					$.each(data, function(i){
+						itens.push("<tr><td>"+ this.categoria +"</td><td>"+ this.nome +"</td><td>"+ this.preco + "</td><td>"+ this.temperatura + "</td><td>"+ this.qtd +"</td></tr>");
+					});
+					$("#dadosBebida").append(itens);
+				});
+				
+				
+				/*$.getJSON(url, function(data) {
 
 						var itens = [];
 
@@ -115,7 +146,7 @@
 
 						$("#dadosBebida").append(itens);
 
-				});
+				});*/
 
 			});
 

@@ -10,13 +10,25 @@
 package hello;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Controller {
 	
@@ -58,10 +70,30 @@ public class Controller {
 	}//Cesar Augusto
 	
 	public void adicionarBebida() {
-		get("/addBebida/:categoria/:nome/:preco/:temperatura/:qtd",  (req, res) -> {
+		
+		post("/addBebida/Bebida", new Route() {
+			public Object handle(final Request request, final Response response) throws JSONException {
+				response.header("Access-Control-Allow-Origin", "*");
+		        
+		        Gson gson = new Gson();
+		        String json = request.body();
+		        
+		        Bebida bebida = gson.fromJson(json, Bebida.class);
+		        try {
+		        	model.addBebida(bebida);
+		        	return new Gson().toJson(model.getBebidas());
+		        }catch (Exception e){
+		        	return null;
+		        }
+			}			
+		});
+		
+		/*get("/addBebida/:categoria/:nome/:preco/:temperatura/:qtd",  (req, res) -> {
 			model.addBebida(new Bebida(req.params(":categoria"),req.params(":nome"), Double.parseDouble(req.params(":preco")), req.params(":temperatura"), Integer.parseInt(req.params(":qtd"))));
 			return new Gson().toJson(model.getBebidas());
-		});
+		});*/
+		
+		
 	}//Cesar Augusto
 	
 	public LocalDate ConvertLocalDate(String dt) {
@@ -83,10 +115,31 @@ public class Controller {
 		});
 	}//Julio Cesar
 	
-	public void verificarLogin() {
+	/*public void verificarLogin() {
 		get("/loginAdm/:login/:senha", (req,res)-> {
 			return new Gson().toJson(model.verificarLogin(req.params(":login"),req.params(":senha")));
 			
 		});
-	}//Cesar Augusto
+	}//Cesar Augusto*/
+	
+	public void verficarLogin() {
+		post("/loginAdm/funcionario", new Route() {
+			public Object handle(final Request request, final Response response) throws JSONException {
+				response.header("Access-Control-Allow-Origin", "*");
+
+		        JSONObject json = new JSONObject(request.body());
+		        	
+		        String userName = json.getString("login");
+		           
+		        String password = json.getString("senha");
+		        
+		        try {
+		        	return new Gson().toJson(model.verificarLogin(userName, password));
+		        }
+		        catch(Exception e) {
+		        	return null;
+		        }
+			}	
+		});
+	}
 }

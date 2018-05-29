@@ -76,6 +76,12 @@
 	<script>
 		$(document).ready(function(){
 			
+			var login = sessionSt*orage.getItem("login");
+			
+			if(login == null) {
+				$(location).attr("href", "Login.html");
+			}
+			
 			$("#buscarBebida").click(function(){
 				window.location = "/buscarBebida.html";
 			});

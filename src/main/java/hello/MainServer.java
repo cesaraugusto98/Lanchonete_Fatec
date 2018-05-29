@@ -41,12 +41,13 @@ public class MainServer {
 		controller.adicionarLanche();
 		controller.buscarBebida();
 		controller.adicionarBebida();
-		controller.verificarLogin();
+		controller.verficarLogin();
 		controller.adicionarFuncionario();
 				
     }
     
 	public static void inicializarLanches(){
+		model.limpaLanche();
     	model.addLanche(new Lanche("Hamburgao", "Hamburgao com Queijo Cheddar", 3.50, 5));
     	model.addLanche(new Lanche("Hamburgao", "Hamburgao com Queijo Mussarela", 3.50, 5));
     	model.addLanche(new Lanche("Hamburgao", "Hamburgao com Tomate", 3.50, 5));

@@ -35,18 +35,19 @@
   <script>
 		$(document).ready(function(){
 			$("#busca").click(function() {
-				var login = $("#txtLogin").val();
-				var senha = $("#txtSenha").val();	
+				var login = $("#txtLogin").val().trim();
+				var senha = $("#txtSenha").val().trim();	
 					
 				var url = "/loginAdm/" + login + "/" + senha;
 				
-				$.getJSON(url, function(data) {
-					if(data == true) {
+				$.post("loginAdm/funcionario", JSON.stringify({'login': login, 'senha': senha}), function(data){
+					if(data) {
+						sessionStorage.setItem("login", data.login);
 						window.location = "/buscarLanche.html";
 					} else {
 						$('#erro').attr('class', 'text-danger');
 					}
-				});
+				}, 'json');				
 			});
 		});
 		//Cesar Santos
