@@ -55,14 +55,14 @@ public class MainServer {
     	model.addLanche(new Lanche("Pastel", "Pastel de Frango com Catupiry", 6.50, 5));
     	model.addLanche(new Lanche("Pastel", "Pastel de Queijo", 5.00, 5));
     	
+    	model.limpaBebida();
     	model.addBebida(new Bebida("Refrigerantes", "Coca-Cola Lata", 3.50, "Gelada", 3));
     	model.addBebida(new Bebida("Sucos", "DelVale Lata", 3.00, "Temperatura Ambiente", 10));
     	model.addBebida(new Bebida("Agua", "Agua com gás", 1.50, "Gelada", 15));
     	model.addBebida(new Bebida("Refrigerantes", "Coca-Cola 2L", 10.00, "Gelada", 5));
     	
+    	model.limpaFuncionario();
     	model.addFuncionario(new Funcionario("Cesar Santos", "123.456.789-0", "ADMIN", "ADMIN", LocalDate.of(1998, 06, 02), 1000.0));
-    	//model.addLanche(new Lanche("Coxinha", "Coxinha de Frango com Catupiry", 3.50));
-    	//model.addLanche(new Lanche("Coxinha", "Coxinha de Frango", 3.00));
     }
 	
 }

@@ -64,8 +64,9 @@ public class Model {
 		Query query = lanches.query();
 		query.constrain(Lanche.class);
 		ObjectSet<Lanche> allLanche = query.execute();
-		
-		
+		for(Lanche l: allLanche) {
+			System.out.println(l);
+		}
 		return allLanche;
 	}//Cesar Augusto
 	
@@ -86,6 +87,14 @@ public class Model {
 		funcionarios.store(func);
 		funcionarios.commit();
 	}//Julio Cesar
+
+	public void limpaFuncionario() {
+		List<Funcionario> allFuncionario = getFuncionariosTratados();
+		for(Funcionario fun:allFuncionario) {
+			funcionarios.delete(fun);	
+		}
+		funcionarios.commit();
+	}	
 	
 	public List<Funcionario> getFuncionariosTratados(){
 		Query query = funcionarios.query();
@@ -109,6 +118,7 @@ public class Model {
 		}
 		bebidas.commit();
 	}
+	
 	public void addBebida(Bebida bebida){
 		//bebidas.add(bebida);
 		bebidas.store(bebida);

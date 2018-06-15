@@ -121,15 +121,17 @@
 				var categoria = $("#categoria").val().trim();
 				var nome = $("#nome").val().trim();        		
         		var preco = $("#preco").val().trim();
-        		var temperatura = $("#sabor").val().trim();
+        		var temperatura = $("#temperatura").val().trim();
 				var qtd = $("#qtd").val().trim();
 				
 				$("#dadosLanche").empty();
 
-				var url = "/addBebida/"+categoria+"/"+nome+"/"+preco+"/"+temperatura+"/"+qtd+"";
-				$.post("/addBebida/bebida", JSON.stringify(}'categoria':categoria, 'nome': nome, 'preco': preco, 'temperatura':temperatura, 'qtd': qtd}), function(data){
+				//var url = "/addBebida/"+categoria+"/"+nome+"/"+preco+"/"+temperatura+"/"+qtd+"";
+				$.post("/addBebida/bebida", JSON.stringify({'categoria':categoria, 'nome': nome, 'preco': preco, 'temperatura':temperatura, 'qtd': qtd}), function(data){
 					var itens = [];
+					console.log(data);
 					$.each(data, function(i){
+						for(y in i) {
 						itens.push("<tr><td>"+ this.categoria +"</td><td>"+ this.nome +"</td><td>"+ this.preco + "</td><td>"+ this.temperatura + "</td><td>"+ this.qtd +"</td></tr>");
 					});
 					$("#dadosBebida").append(itens);
@@ -137,15 +139,11 @@
 				
 				
 				/*$.getJSON(url, function(data) {
-
 						var itens = [];
-
 						$.each(data, function(i){
 							itens.push("<tr><td>"+ this.categoria +"</td><td>"+ this.nome +"</td><td>"+ this.preco + "</td><td>"+ this.temperatura + "</td><td>"+ this.qtd +"</td></tr>");						
 						});
-
 						$("#dadosBebida").append(itens);
-
 				});*/
 
 			});

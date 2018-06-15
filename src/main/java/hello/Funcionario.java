@@ -75,7 +75,6 @@ public class Funcionario {
 		this.login = login;
 		this.senha = senha;
 		this.dtNascimento = dtNascimento;
-		this.salario = salario;
-		
+		this.salario = salario;	
 	}
 }

@@ -76,7 +76,7 @@
 	<script>
 		$(document).ready(function(){
 			
-			var login = sessionSt*orage.getItem("login");
+			var login = sessionStorage.getItem("login");
 			
 			if(login == null) {
 				$(location).attr("href", "Login.html");
@@ -112,17 +112,15 @@
 				var salario = $("#salario").val();
 
 				$("#dadosFuncionario").empty();
-
 				var url = "/addFuncionario/"+nome+"/"+cpf+"/"+login+"/"+senha+"/"+dtNascimento+"/"+salario+"";
-
+				//$.post("addFuncionario/funcionario", JSON.stringify({'nome':nome, 'cpf':cpf, 'login':login, 'senha':senha, 'dtNascimento', }))
+				//$.post("addLanche/lanche", JSON.stringify({'nome': nome, 'sabor': sabor, 'preco': preco, 'qtd': qtd}), function(data){
 				$.getJSON(url, function(data) {
-
 						var itens = [];
-
+						console.log(data);
 						$.each(data, function(i){
 							itens.push("<tr><td>"+ this.nome +"</td><td>"+ this.cpf +"</td><td>"+ this.login +"</td><td>"+ this.senha +"</td><td>"+ this.dtNascimento.day.toString() +"/"+this.dtNascimento.month.toString() +"/"+this.dtNascimento.year.toString() + "</td><td>"+ this.salario + "</td></tr>");
 						});
-
 						$("#dadosFuncionario").append(itens);
 
 				});

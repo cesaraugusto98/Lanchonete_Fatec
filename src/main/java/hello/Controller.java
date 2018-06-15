@@ -60,18 +60,28 @@ public class Controller {
 	
 	public void adicionarLanche(){
 		
-		get("/addLanche/:nome/:sabor/:preco/:qtd",  (req, res) -> {
-			
-			model.addLanche(new Lanche(req.params(":nome"),req.params(":sabor"), Double.parseDouble(req.params(":preco")), Integer.parseInt(req.params(":qtd"))));
-			return new Gson().toJson(model.getLanches());
-			
-		});
-		
+		post("/addLanche/lanche", new Route() {
+			public Object handle(final Request request, final Response response) throws JSONException {
+				response.header("Access-Control-Allow-Origin", "*");
+		        
+		        Gson gson = new Gson();
+		        String json = request.body();
+		        
+		        Lanche lanche = gson.fromJson(json, Lanche.class);
+		        System.out.println(lanche.getNome());
+		        try {
+		        	model.addLanche(lanche);
+		        	return new Gson().toJson(model.getLanches());
+		        }catch (Exception e){
+		        	return null;
+		        }
+			}			
+		});		
 	}//Cesar Augusto
 	
 	public void adicionarBebida() {
 		
-		post("/addBebida/Bebida", new Route() {
+		post("/addBebida/bebida", new Route() {
 			public Object handle(final Request request, final Response response) throws JSONException {
 				response.header("Access-Control-Allow-Origin", "*");
 		        
