@@ -97,25 +97,7 @@
 			$("#login").click(function(){
 				window.location = "/Login.html";
 			});
-			/*
-			$(document).ready(function(){
-				$("#busca").click(function() {
-					var login = $("#txtLogin").val().trim();
-					var senha = $("#txtSenha").val().trim();	
-					
-					var url = "/loginAdm/" + login + "/" + senha;
-				
-					$.post("loginAdm/funcionario", JSON.stringify({'login': login, 'senha': senha}), function(data){
-						if(data) {
-							sessionStorage.setItem("login", data.login);
-							window.location = "/buscarLanche.html";
-						} else {
-							$('#erro').attr('class', 'text-danger');
-						}
-					}, 'json');				
-				});
-			});
-			*/
+			
 			$("#cadastro").click(function() {
 				
 				var categoria = $("#categoria").val().trim();

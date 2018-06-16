@@ -111,8 +111,7 @@ public class Controller {
 
 	
 	public void adicionarFuncionario() {
-		
-		post("/addFuncionario/funcionario", new Route() {
+		post("/addTest/test", new Route() {
 			public Object handle(final Request request, final Response response) throws JSONException {
 				response.header("Access-Control-Allow-Origin", "*");
 		        
@@ -128,20 +127,7 @@ public class Controller {
 		        }
 			}			
 		});
-		
-		/*get("/addFuncionario/:nome/:cpf/:login/:senha/:dtNascimento/:salario",  (req, res) -> {
-			model.addFuncionario(new Funcionario(req.params(":nome"),req.params(":cpf"),req.params(":login"),req.params(":senha"), ConvertLocalDate(req.params(":dtNascimento")),Double.parseDouble(req.params(":salario"))));
-			
-			return new Gson().toJson(model.getFuncionariosTratados());
-		});*/
 	}//Julio Cesar
-	
-	/*public void verificarLogin() {
-		get("/loginAdm/:login/:senha", (req,res)-> {
-			return new Gson().toJson(model.verificarLogin(req.params(":login"),req.params(":senha")));
-			
-		});
-	}//Cesar Augusto*/
 	
 	public void verficarLogin() {
 		post("/loginAdm/funcionario", new Route() {

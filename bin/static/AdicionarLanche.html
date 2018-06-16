@@ -105,7 +105,6 @@
 					var itens = [];
 					$.each(data, function(i){
 						itens.push("<tr> <td>"+ this.nome +"</td><td>"+ this.sabor + "</td><td>"+ this.preco + "</td><td>"+ this.qtd+ "</td></tr>");
-						alert(itens);
 					});
 					$("#dadosLanche").append(itens);
 				}, "json");				

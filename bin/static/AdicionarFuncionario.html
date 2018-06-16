@@ -113,14 +113,14 @@
 
 				$("#dadosFuncionario").empty();
 				
-				$.post("addFuncionario/funcionario", JSON.stringify({'nome':nome, 'cpf':cpf, 'login':login,
+				$.post("/addFuncionario/funcionario", JSON.stringify({'nome':nome, 'cpf':cpf, 'login':login,
 					'senha':senha, 'dtNascimento':dtNascimento, 'salario':salario}), function(data){
-						var itens = [];
-						$.each(data, function(i){
-							itens.push("<tr><td>"+ this.nome +"</td><td>"+ this.cpf +"</td><td>"+ this.login +"</td><td>"+ this.senha +"</td><td>"+ this.dtNascimento.day.toString() +"/"+this.dtNascimento.month.toString() +"/"+this.dtNascimento.year.toString() + "</td><td>"+ this.salario + "</td></tr>");
-						});
-						$("#dadosFuncionario").append(itens);
-
+					var itens = [];
+					console.log(data);
+					$.each(data, function(i){
+						itens.push("<tr><td>"+ this.nome +"</td><td>"+ this.cpf +"</td><td>"+ this.login +"</td><td>"+ this.senha +"</td><td>"+ this.dtNascimento.day.toString() +"/"+this.dtNascimento.month.toString() +"/"+this.dtNascimento.year.toString() + "</td><td>"+ this.salario + "</td></tr>");
+					});
+					$("#dadosFuncionario").append(itens);
 				}, "json");
 
 			});
