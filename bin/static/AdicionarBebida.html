@@ -131,7 +131,6 @@
 					var itens = [];
 					console.log(data);
 					$.each(data, function(i){
-						for(y in i) {
 						itens.push("<tr><td>"+ this.categoria +"</td><td>"+ this.nome +"</td><td>"+ this.preco + "</td><td>"+ this.temperatura + "</td><td>"+ this.qtd +"</td></tr>");
 					});
 					$("#dadosBebida").append(itens);
