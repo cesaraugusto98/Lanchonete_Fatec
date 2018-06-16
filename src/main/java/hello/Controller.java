@@ -68,7 +68,6 @@ public class Controller {
 		        String json = request.body();
 		        
 		        Lanche lanche = gson.fromJson(json, Lanche.class);
-		        System.out.println(lanche.getNome());
 		        try {
 		        	model.addLanche(lanche);
 		        	return new Gson().toJson(model.getLanches());
@@ -98,11 +97,6 @@ public class Controller {
 			}			
 		});
 		
-		/*get("/addBebida/:categoria/:nome/:preco/:temperatura/:qtd",  (req, res) -> {
-			model.addBebida(new Bebida(req.params(":categoria"),req.params(":nome"), Double.parseDouble(req.params(":preco")), req.params(":temperatura"), Integer.parseInt(req.params(":qtd"))));
-			return new Gson().toJson(model.getBebidas());
-		});*/
-		
 		
 	}//Cesar Augusto
 	
@@ -118,11 +112,28 @@ public class Controller {
 	
 	public void adicionarFuncionario() {
 		
-		get("/addFuncionario/:nome/:cpf/:login/:senha/:dtNascimento/:salario",  (req, res) -> {
+		post("/addFuncionario/funcionario", new Route() {
+			public Object handle(final Request request, final Response response) throws JSONException {
+				response.header("Access-Control-Allow-Origin", "*");
+		        
+		        Gson gson = new Gson();
+		        String json = request.body();
+		        
+		        Funcionario funcionario = gson.fromJson(json, Funcionario.class);
+		        try {
+		        	model.addFuncionario(funcionario);
+		        	return new Gson().toJson(model.getBebidas());
+		        }catch (Exception e){
+		        	return null;
+		        }
+			}			
+		});
+		
+		/*get("/addFuncionario/:nome/:cpf/:login/:senha/:dtNascimento/:salario",  (req, res) -> {
 			model.addFuncionario(new Funcionario(req.params(":nome"),req.params(":cpf"),req.params(":login"),req.params(":senha"), ConvertLocalDate(req.params(":dtNascimento")),Double.parseDouble(req.params(":salario"))));
 			
 			return new Gson().toJson(model.getFuncionariosTratados());
-		});
+		});*/
 	}//Julio Cesar
 	
 	/*public void verificarLogin() {

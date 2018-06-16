@@ -90,23 +90,6 @@
 			$("#login").click(function(){
 				window.location = "/Login.html";
 			});
-			
-			
-			/*$("#busca").click(function() {
-				var login = $("#txtLogin").val().trim();
-				var senha = $("#txtSenha").val().trim();	
-					
-				var url = "/loginAdm/" + login + "/" + senha;
-				
-				$.post("loginAdm/funcionario", JSON.stringify({'login': login, 'senha': senha}), function(data){
-					if(data) {
-						sessionStorage.setItem("login", data.login);
-						window.location = "/buscarLanche.html";
-					} else {
-						$('#erro').attr('class', 'text-danger');
-					}
-				}, 'json');				
-			});*/
 
 			$("#cadastro").click(function() {
 
@@ -120,22 +103,12 @@
 				
 				$.post("addLanche/lanche", JSON.stringify({'nome': nome, 'sabor': sabor, 'preco': preco, 'qtd': qtd}), function(data){
 					var itens = [];
-					console.log(data);
 					$.each(data, function(i){
 						itens.push("<tr> <td>"+ this.nome +"</td><td>"+ this.sabor + "</td><td>"+ this.preco + "</td><td>"+ this.qtd+ "</td></tr>");
 						alert(itens);
 					});
 					$("#dadosLanche").append(itens);
-				});
-				
-				/*$.getJSON(url, function(data) {
-						var itens = [];
-						$.each(data, function(i){
-							itens.push("<tr> <td>"+ this.nome +"</td><td>"+ this.sabor + "</td><td>"+ this.preco + "</td><td>"+ this.qtd+ "</td></tr>");
-						});
-						$("#dadosLanche").append(itens);
-				});*/
-				
+				}, "json");				
 
 			});
 

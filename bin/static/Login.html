@@ -37,8 +37,6 @@
 			$("#busca").click(function() {
 				var login = $("#txtLogin").val().trim();
 				var senha = $("#txtSenha").val().trim();	
-					
-				var url = "/loginAdm/" + login + "/" + senha;
 				
 				$.post("loginAdm/funcionario", JSON.stringify({'login': login, 'senha': senha}), function(data){
 					if(data) {
@@ -47,7 +45,7 @@
 					} else {
 						$('#erro').attr('class', 'text-danger');
 					}
-				}, 'json');				
+				}, "json");				
 			});
 		});
 		//Cesar Santos
