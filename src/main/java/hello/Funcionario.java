@@ -9,7 +9,6 @@
 
 package hello;
 
-import java.time.LocalDate;
 
 public class Funcionario {
 	
@@ -17,7 +16,7 @@ public class Funcionario {
 	private String cpf;
 	private String login;
 	private String senha;
-	private LocalDate dtNascimento;
+	private String dtNascimento;
 	private double salario;
 	
 	
@@ -61,15 +60,15 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-	public LocalDate getDtNascimento() {
+	public String getDtNascimento() {
 		return dtNascimento;
 	}
 
-	public void setDtNascimento(LocalDate dtNascimento) {
+	public void setDtNascimento(String dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 	
-	public Funcionario(String nome,String cpf, String  login, String senha, LocalDate dtNascimento, double salario){
+	public Funcionario(String nome,String cpf, String  login, String senha, String dtNascimento, double salario){
 		this.nome = nome;		
 		this.cpf = cpf;
 		this.login = login;

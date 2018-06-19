@@ -11,8 +11,6 @@ package hello;
 
 import static spark.Spark.*;
 
-import java.time.LocalDate;
-
 
 public class MainServer {
 	
@@ -62,7 +60,7 @@ public class MainServer {
     	model.addBebida(new Bebida("Refrigerantes", "Coca-Cola 2L", 10.00, "Gelada", 5));
     	
     	model.limpaFuncionario();
-    	model.addFuncionario(new Funcionario("Cesar Santos", "123.456.789-0", "ADMIN", "ADMIN", LocalDate.of(1998, 06, 02), 1000.0));
+    	model.addFuncionario(new Funcionario("Cesar Santos", "123.456.789-0", "ADMIN", "ADMIN", "02/06/1998", 1000.0));
     }
 	
 }

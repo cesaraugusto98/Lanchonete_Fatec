@@ -10,7 +10,6 @@
 package hello;
 
 import java.util.List;
-import java.time.LocalDate;
 import java.util.LinkedList;
 
 import com.db4o.Db4oEmbedded;
@@ -99,9 +98,10 @@ public class Model {
 		query.constrain(Funcionario.class);
 		ObjectSet<Funcionario> allFuncionario = query.execute();
 		
-		for(Funcionario func:allFuncionario) {
+		/*for(Funcionario func:allFuncionario) {
 			func.setDtNascimento(LocalDate.parse(String.valueOf(func.getDtNascimento()).replace('/', '-')));
 		}
+		return allFuncionario;*/
 		return allFuncionario;
 	}//Julio Cesar
 	
