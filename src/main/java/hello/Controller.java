@@ -111,7 +111,7 @@ public class Controller {
 
 	
 	public void adicionarFuncionario() {
-		post("/addTest/test", new Route() {
+		post("/adicionarFunc/funcionario", new Route() {
 			public Object handle(final Request request, final Response response) throws JSONException {
 				response.header("Access-Control-Allow-Origin", "*");
 		        
@@ -121,7 +121,7 @@ public class Controller {
 		        Funcionario funcionario = gson.fromJson(json, Funcionario.class);
 		        try {
 		        	model.addFuncionario(funcionario);
-		        	return new Gson().toJson(model.getBebidas());
+		        	return new Gson().toJson(model.getFuncionariosTratados());
 		        }catch (Exception e){
 		        	return null;
 		        }
@@ -135,16 +135,19 @@ public class Controller {
 				response.header("Access-Control-Allow-Origin", "*");
 
 		        JSONObject json = new JSONObject(request.body());
-		        	
-		        String userName = json.getString("login");
-		           
+		        String userName = json.getString("login");		           
 		        String password = json.getString("senha");
 		        
 		        try {
-		        	return new Gson().toJson(model.verificarLogin(userName, password));
+		        	if(model.verificarLogin(userName, password)!= null) {
+		        		return true;
+		        	}else {
+		        		return false;
+		        	}
+		        	//return new Gson().toJson(model.verificarLogin(userName, password));
 		        }
 		        catch(Exception e) {
-		        	return null;
+		        	return false;
 		        }
 			}	
 		});

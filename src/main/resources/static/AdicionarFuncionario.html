@@ -104,17 +104,18 @@
 
 
 			$("#cadastro").click(function() {
-				var nome = $("#nome").val();
-				var cpf = $("#cpf").val();
-				var login = $("#login").val();
-				var senha = $("#senha").val();
-				var dtNascimento = $("#dtNascimento").val().split('/').join('-');
-				var salario = $("#salario").val();
+				var nome = $("#nome").val().trim();
+				var cpf = $("#cpf").val().trim();
+				var login = $("#login").val().trim();
+				var senha = $("#senha").val().trim();
+				//var dtNascimento = $("#dtNascimento").val().split('/').join('-');
+				var dtNascimento = $("#dtNascimento").val().trim();
+				alert(dtNascimento);
+				var salario = $("#salario").val().trim();
 
 				$("#dadosFuncionario").empty();
 				
-				$.post("/addTeste/test", JSON.stringify({'nome':nome, 'cpf':cpf, 'login':login,
-					'senha':senha, 'dtNascimento':dtNascimento, 'salario':salario}), function(data){
+				$.post("/adicionarFunc/funcionario", JSON.stringify({'nome': nome, 'cpf': cpf, 'login': login, 'senha': senha, 'dtNascimento': dtNascimento, 'salario': salario}), function(data){
 					var itens = [];
 					console.log(data);
 					$.each(data, function(i){
