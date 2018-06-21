@@ -109,16 +109,14 @@
 				var login = $("#login").val().trim();
 				var senha = $("#senha").val().trim();
 				var dtNascimento = $("#dtNascimento").val().trim();
-				alert(dtNascimento);
 				var salario = $("#salario").val().trim();
 
 				$("#dadosFuncionario").empty();
 				
 				$.post("/adicionarFunc/funcionario", JSON.stringify({'nome': nome, 'cpf': cpf, 'login': login, 'senha': senha, 'dtNascimento': dtNascimento, 'salario': salario}), function(data){
 					var itens = [];
-					console.log(data);
 					$.each(data, function(i){
-						itens.push("<tr><td>"+ this.nome +"</td><td>"+ this.cpf +"</td><td>"+ this.login +"</td><td>"+ this.senha +"</td><td>"+ this.dtNascimento.day.toString() +"/"+this.dtNascimento.month.toString() +"/"+this.dtNascimento.year.toString() + "</td><td>"+ this.salario + "</td></tr>");
+						itens.push("<tr><td>"+ this.nome +"</td><td>"+ this.cpf +"</td><td>"+ this.login +"</td><td>"+ this.senha +"</td><td>"+ this.dtNascimento + "</td><td>"+ this.salario + "</td></tr>");
 					});
 					$("#dadosFuncionario").append(itens);
 				}, "json");
