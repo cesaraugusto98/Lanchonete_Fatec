@@ -140,7 +140,6 @@ public class Controller {
 		        	}else {
 		        		return false;
 		        	}
-		        	//return new Gson().toJson(model.verificarLogin(userName, password));
 		        }
 		        catch(Exception e) {
 		        	return false;

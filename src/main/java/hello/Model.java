@@ -80,7 +80,6 @@ public class Model {
 	}//Cesar Augusto
 	
 	public void addFuncionario(Funcionario func) {
-		//funcionarios.add(func);
 		funcionarios.store(func);
 		funcionarios.commit();
 	}//Julio Cesar
@@ -98,17 +97,9 @@ public class Model {
 		query.constrain(Funcionario.class);
 		ObjectSet<Funcionario> allFuncionario = query.execute();
 		
-		/*for(Funcionario func:allFuncionario) {
-			func.setDtNascimento(LocalDate.parse(String.valueOf(func.getDtNascimento()).replace('/', '-')));
-		}
-		return allFuncionario;*/
 		return allFuncionario;
-	}//Julio Cesar
+	}
 	
-	/*public List<Funcionario> getFuncionarios(){
-		return funcionarios;
-	}//Cesar Augusto
-*/	
 	public void limpaBebida() {
 		List<Bebida> allBebidas = getBebidas();
 		for(Bebida beb:allBebidas) {
@@ -118,7 +109,6 @@ public class Model {
 	}
 	
 	public void addBebida(Bebida bebida){
-		//bebidas.add(bebida);
 		bebidas.store(bebida);
 		bebidas.commit();
 	}//Julio Cesar
